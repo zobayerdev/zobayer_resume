@@ -14,11 +14,54 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Novu — SaaS Dashboard redesign case study by Eliott. How a full UX overhaul reduced cognitive load by 40% and improved trial-to-paid conversion."/>
-  <meta name="author" content="Eliott"/>
-  <meta property="og:title" content="Novu — SaaS Dashboard · Case Study by Eliott"/>
+
+  <!-- Universal offline file:// protocol link handler -->
+  <script>
+    (function() {
+      if (window.location.protocol === 'file:') {
+        function fixLinks() {
+          document.querySelectorAll('a').forEach(function(a) {
+            var h = a.getAttribute('href');
+            if (!h) return;
+            if (h === '/' || h === '/index') {
+              a.setAttribute('href', 'index.html');
+            } else if (h.startsWith('/') && !h.endsWith('.html') && !h.includes('#') && !h.includes(':')) {
+              a.setAttribute('href', h.slice(1) + '.html');
+            }
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', fixLinks);
+        } else {
+          fixLinks();
+        }
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a');
+          if (!a) return;
+          var h = a.getAttribute('href');
+          if (!h) return;
+          if (h === '/' || h === '/index') {
+            e.preventDefault();
+            window.location.href = 'index.html';
+          } else if (h.startsWith('/') && !h.endsWith('.html') && !h.includes('#') && !h.includes(':')) {
+            e.preventDefault();
+            window.location.href = h.slice(1) + '.html';
+          }
+        }, true);
+      }
+    })();
+  </script>
+  <!-- Primary SEO Meta Tags -->
+  <title>Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem | zobayerdev</title>
+  <meta name="title" content="Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem | zobayerdev"/>
+  <meta name="description" content="Novu SaaS Dashboard redesign case study by Md. Zobayer Hasan Nayem (zobayerdev). How a full UX overhaul reduced cognitive load by 40% and improved conversion."/>
+  <meta name="author" content="Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta name="keywords" content="zobayer, zobayerdev, novu case study, ui ux case study, saas dashboard redesign, md zobayer hasan nayem"/>
+  <meta property="og:title" content="Novu SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem"/>
   <meta property="og:type" content="article"/>
-  <title>Novu — SaaS Dashboard · Case Study — Eliott</title>
+  <meta property="og:url" content="https://www.zobayer.xyz/case-study"/>
+  <meta property="og:image" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
+  <link rel="canonical" href="https://www.zobayer.xyz/case-study"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -99,15 +142,14 @@
   <header class="fixed top-0.5 left-0 right-0 z-50 transition-all duration-300"
     :class="scrolled ? 'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5' : 'bg-transparent'">
     <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
-      <a href="index.html" class="font-display font-bold text-xl tracking-tight z-10">
-        <span class="text-zinc-900 dark:text-white">eli</span><span class="text-accent">ott</span>
+      <a href="/" class="font-display font-bold text-xl tracking-tight z-10">
+        <span class="text-zinc-900 dark:text-white">Md. Zobayer Hasan</span><span class="text-accent"> Nayem</span>
       </a>
+      <!-- Desktop Links: Home, Projects, Contact Me -->
       <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
-        <li><a href="index.html#services" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Services</a></li>
-        <li><a href="projects.html" class="nav-link text-accent font-medium">Work</a></li>
-        <li><a href="index.html#about" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">About</a></li>
-        <li><a href="blog.html" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Blog</a></li>
-        <li><a href="index.html#contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Contact</a></li>
+        <li><a href="/" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Home</a></li>
+        <li><a href="/projects" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Projects</a></li>
+        <li><a href="/contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Contact Me</a></li>
       </ul>
       <div class="flex items-center gap-3">
         <button @click="dark=!dark"
@@ -116,7 +158,7 @@
           <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
           <svg x-show="dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
         </button>
-        <a href="index.html#contact" class="hidden md:inline-flex items-center gap-2 btn-primary bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">Hire me →</a>
+        <a href="/contact" class="hidden md:inline-flex items-center gap-2 btn-primary bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">Hire me →</a>
         <button @click="mobileMenu=!mobileMenu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" aria-label="Toggle menu">
           <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
           <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -128,11 +170,12 @@
       x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
       class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
       <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium" role="list">
-        <li><a href="index.html#services" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Services</a></li>
-        <li><a href="projects.html" @click="mobileMenu=false" class="block text-accent font-medium">Work</a></li>
-        <li><a href="index.html#about" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">About</a></li>
-        <li><a href="blog.html" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Blog</a></li>
-        <li><a href="index.html#contact" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Contact</a></li>
+        <li><a href="/" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Home</a></li>
+        <li><a href="/projects" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Projects</a></li>
+        <li><a href="/contact" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300">Contact Me</a></li>
+        <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+          <a href="/contact" @click="mobileMenu=false" class="inline-flex shimmer bg-accent text-white font-medium text-sm px-5 py-2.5 rounded-full">Hire me →</a>
+        </li>
       </ul>
     </div>
   </header>
@@ -383,7 +426,7 @@
         </ul>
 
         <blockquote>
-          <p>"Eliott completely changed how we think about our onboarding. The checklist alone added 6 figures to our ARR in the first quarter. Exceptionally thorough process and a pleasure to work with."</p>
+          <p>"Zobayer completely changed how we think about our onboarding. The streamlined UX alone added 6 figures to our ARR in the first quarter. Exceptionally thorough process and a pleasure to work with."</p>
         </blockquote>
 
         <h2>Reflections</h2>
@@ -391,7 +434,7 @@
         <p>If I were to do it again, I'd push harder for a longer discovery phase. Six weeks is tight for a full dashboard redesign, and we had to make some navigation decisions based on incomplete card-sort data. The results held up, but another round of testing before hi-fi would have given me more confidence on a few borderline calls.</p>
 
         <hr/>
-        <p><em>Interested in a similar engagement? <a href="index.html#contact">Get in touch</a> — I'm available for new projects from Q2 2025.</em></p>
+        <p><em>Interested in a similar engagement? <a href="contact.html">Get in touch</a> — I'm available for new projects.</em></p>
 
       </div>
     </article>
@@ -467,7 +510,7 @@
             <p class="text-xs font-medium text-accent tracking-widest uppercase mb-4">Ready to start?</p>
             <h2 class="font-display font-bold text-3xl md:text-4xl text-white mb-4">Got a similar project?</h2>
             <p class="text-zinc-400 max-w-md mx-auto mb-8">I'm available for new projects. Tell me about what you're building and let's see if we're a good fit.</p>
-            <a href="index.html#contact" class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors">
+            <a href="/contact" class="inline-flex items-center gap-2 btn-primary bg-accent text-white font-medium px-8 py-3.5 rounded-full hover:bg-accent-light transition-colors">
               Start a project →
             </a>
           </div>
@@ -477,14 +520,31 @@
 
   </main>
 
-  <footer class="border-t border-zinc-100 dark:border-zinc-900">
+  <footer class="border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950">
     <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-sm text-zinc-400">© <span id="yr"></span> Eliott. All rights reserved. <br> Developed by <a href="https://lbegey78.gumroad.com/" target="_blank" class="font-bold">Laurent Begey</a> • Distributed by <a href="https://themewagon.com/" target="_blank" class="font-bold">ThemeWagon</a></p>
-      <p class="text-xs text-zinc-500">Built with <a href="https://tailwindcss.com" class="hover:text-zinc-900 dark:hover:text-white transition-colors" rel="noopener noreferrer" target="_blank">Tailwind CSS</a> &amp; <a href="https://alpinejs.dev" class="hover:text-zinc-900 dark:hover:text-white transition-colors" rel="noopener noreferrer" target="_blank">Alpine.js</a></p>
+      <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Md. Zobayer Hasan Nayem. All rights reserved. <br class="sm:hidden"> Developed by <a href="https://trodevit.com/" target="_blank" class="font-bold text-zinc-700 dark:text-zinc-300 hover:text-accent">Trodev IT</a></p>
+      <div class="flex items-center gap-5 text-sm text-zinc-500">
+        <a href="/" class="hover:text-accent transition-colors">Home</a>
+        <a href="/projects" class="hover:text-accent transition-colors">Projects</a>
+        <a href="/contact" class="hover:text-accent transition-colors">Contact Me</a>
+        <a href="https://github.com/zobayerdev" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">GitHub</a>
+        <a href="https://linkedin.com/in/zobayerdev" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a>
+      </div>
     </div>
   </footer>
 
   <script>
+    // Offline local file:// protocol fallback
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="/"]').forEach(el => {
+          const h = el.getAttribute('href');
+          if (h === '/') el.setAttribute('href', 'index.html');
+          else if (h.startsWith('/')) el.setAttribute('href', h.slice(1) + '.html');
+        });
+      });
+    }
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
     // Reveal on scroll

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ dark: localStorage.getItem('theme')==='dark'||(!localStorage.getItem('theme')&&window.matchMedia('(prefers-color-scheme: dark)').matches), scrolled:false, mobileMenu:false }" :class="{'dark':dark}" x-init="$watch('dark',v=>localStorage.setItem('theme',v?'dark':'light'));window.addEventListener('scroll',()=>scrolled=window.scrollY>20,{passive:true})" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Universal offline file:// protocol link handler -->
+  <script>
+    (function() {
+      if (window.location.protocol === 'file:') {
+        function fixLinks() {
+          document.querySelectorAll('a').forEach(function(a) {
+            var h = a.getAttribute('href');
+            if (!h) return;
+            if (h === '/' || h === '/index') {
+              a.setAttribute('href', 'index.html');
+            } else if (h.startsWith('/') && !h.endsWith('.html') && !h.includes('#') && !h.includes(':')) {
+              a.setAttribute('href', h.slice(1) + '.html');
+            }
+          });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', fixLinks);
+        } else {
+          fixLinks();
+        }
+        document.addEventListener('click', function(e) {
+          var a = e.target.closest('a');
+          if (!a) return;
+          var h = a.getAttribute('href');
+          if (!h) return;
+          if (h === '/' || h === '/index') {
+            e.preventDefault();
+            window.location.href = 'index.html';
+          } else if (h.startsWith('/') && !h.endsWith('.html') && !h.includes('#') && !h.includes(':')) {
+            e.preventDefault();
+            window.location.href = h.slice(1) + '.html';
+          }
+        }, true);
+      }
+    })();
+  </script>
+
+  <!-- SEO Meta Tags -->
+  <title>Blog &amp; Tech Articles | Md. Zobayer Hasan Nayem | zobayerdev</title>
+  <meta name="title" content="Blog &amp; Tech Articles | Md. Zobayer Hasan Nayem | zobayerdev"/>
+  <meta name="description" content="Technical articles, Flutter tutorials, UI/UX insights, and mobile development guides by Md. Zobayer Hasan Nayem (zobayerdev)."/>
+  <meta name="keywords" content="zobayer, zobayerdev, md zobayer hasan nayem, flutter tutorials, mobile app development blog, zobayer blog, flutter articles medium, dart tutorials"/>
+  <meta name="author" content="Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+  <link rel="canonical" href="https://www.zobayer.xyz/blog.html"/>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="blog"/>
+  <meta property="og:url" content="https://www.zobayer.xyz/blog.html"/>
+  <meta property="og:site_name" content="Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta property="og:title" content="Blog &amp; Tech Articles | Md. Zobayer Hasan Nayem"/>
+  <meta property="og:description" content="Articles on Flutter development, Firebase, UI design, and mobile application engineering."/>
+  <meta property="og:image" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:url" content="https://www.zobayer.xyz/blog.html"/>
+  <meta property="twitter:title" content="Blog &amp; Tech Articles | Md. Zobayer Hasan Nayem (@zobayerdev)"/>
+  <meta property="twitter:description" content="Technical guides on Flutter, Mobile development, and product design by Zobayer."/>
+  <meta property="twitter:image" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
+
+  <!-- Tailwind & Alpine.js CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700&display=swap" rel="stylesheet"/>
+
+  <script>
+    tailwind.config={darkMode:'class',theme:{extend:{fontFamily:{display:['PT Sans','sans-serif'],body:['DM Sans','sans-serif']},colors:{accent:'#FF6B2B','accent-light':'#FF8F5C'}}}}
+  </script>
+
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    html{font-family:'DM Sans',sans-serif;}
+    h1,h2,h3,h4,h5,h6{font-family:'PT Sans',sans-serif;}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);}
+    .reveal.visible{opacity:1;transform:translateY(0);}
+    .reveal-delay-1{transition-delay:.08s;}.reveal-delay-2{transition-delay:.16s;}.reveal-delay-3{transition-delay:.24s;}.reveal-delay-4{transition-delay:.32s;}.reveal-delay-5{transition-delay:.4s;}.reveal-delay-6{transition-delay:.48s;}
+    .nav-link{position:relative;}
+    .nav-link::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1.5px;background:currentColor;transition:width .25s cubic-bezier(.4,0,.2,1);}
+    .nav-link:hover::after, .nav-link.active::after{width:100%;}
+    ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px;}
+    body{transition:background-color .3s,color .3s;}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4;}
+    .card{transition:transform .3s cubic-bezier(.4,0,.2,1),border-color .2s;}
+    .card:hover{transform:translateY(-3px);}
+    .btn-primary{position:relative;overflow:hidden;}
+    .btn-primary::after{content:'';position:absolute;top:0;left:-100%;width:60%;height:100%;background:rgba(255,255,255,.18);transform:skewX(-20deg);transition:left .4s cubic-bezier(.4,0,.2,1);}
+    .btn-primary:hover::after{left:160%;}
+    [x-cloak]{display:none!important;}
+    .photo-frame{position:relative;overflow:hidden;background:#e4e4e7;}
+    .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  </style>
+</head>
+
+<body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- ═══ HEADER / NAVIGATION ═══ -->
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    :class="scrolled?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':'bg-transparent'">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="font-display font-bold text-xl tracking-tight z-10" aria-label="Back to home">
+        <span class="text-zinc-900 dark:text-white">Md. Zobayer Hasan</span><span class="text-accent"> Nayem</span>
+      </a>
+
+      <!-- Desktop Links: Home, Projects, Contact Me -->
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
+        <li><a href="/" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Home</a></li>
+        <li><a href="/projects" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Projects</a></li>
+        <li><a href="/contact" class="nav-link text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Contact Me</a></li>
+      </ul>
+
+      <!-- Action items -->
+      <div class="flex items-center gap-3">
+        <!-- Dark mode toggle -->
+        <button @click="dark=!dark" class="w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" :aria-label="dark?'Light mode':'Dark mode'">
+          <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+          <svg x-show="dark" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707M17.657 17.657l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+        </button>
+
+        <!-- CTA Hire Me -->
+        <a href="/contact" class="hidden md:inline-flex items-center gap-2 btn-primary bg-accent text-white text-sm font-medium px-5 py-2 rounded-full hover:bg-accent-light transition-colors">
+          Hire me <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button @click="mobileMenu=!mobileMenu" class="md:hidden w-9 h-9 flex items-center justify-center rounded-full border border-zinc-200 dark:border-zinc-800" :aria-expanded="mobileMenu" aria-label="Toggle menu">
+          <svg x-show="!mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg x-show="mobileMenu" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <div x-show="mobileMenu" x-cloak
+      x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-2"
+      class="md:hidden bg-white dark:bg-zinc-950 border-t border-zinc-100 dark:border-zinc-900">
+      <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium" role="list">
+        <li><a href="/" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent">Home</a></li>
+        <li><a href="/projects" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent">Projects</a></li>
+        <li><a href="/contact" @click="mobileMenu=false" class="block text-zinc-700 dark:text-zinc-300 hover:text-accent">Contact Me</a></li>
+        <li class="pt-2 border-t border-zinc-100 dark:border-zinc-900">
+          <a href="/contact" @click="mobileMenu=false" class="inline-flex shimmer bg-accent text-white font-medium text-sm px-5 py-2.5 rounded-full">Hire me →</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main class="flex-grow">
+
+    <!-- HERO BLOG -->
+    <section class="pt-36 pb-16 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <p class="reveal text-xs font-semibold text-accent tracking-widest uppercase mb-3">Writing &amp; Tutorials</p>
+        <h1 class="reveal reveal-delay-1 font-display font-bold text-5xl md:text-6xl text-zinc-900 dark:text-white leading-tight mb-4">The Blog</h1>
+        <p class="reveal reveal-delay-2 text-lg text-zinc-500 dark:text-zinc-400 max-w-xl leading-relaxed">
+          In-depth technical guides, Flutter architecture tips, Firebase integrations, and mobile engineering insights by Md. Zobayer Hasan Nayem (zobayerdev).
+        </p>
+
+        <!-- Filter tags -->
+        <div class="reveal reveal-delay-3 flex flex-wrap gap-2 mt-8" x-data="{active:'all'}">
+          <button @click="active='all'" :class="active==='all'?'bg-accent text-white border-accent':'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'" class="text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer">All</button>
+          <button @click="active='flutter'" :class="active==='flutter'?'bg-accent text-white border-accent':'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'" class="text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer">Flutter</button>
+          <button @click="active='design'" :class="active==='design'?'bg-accent text-white border-accent':'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'" class="text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer">UI/UX Design</button>
+          <button @click="active='mobile'" :class="active==='mobile'?'bg-accent text-white border-accent':'bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 border-zinc-200 dark:border-zinc-700 hover:border-accent'" class="text-sm px-4 py-1.5 rounded-full border transition-colors cursor-pointer">Mobile Engineering</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED ARTICLE -->
+    <section class="pb-16">
+      <div class="max-w-6xl mx-auto px-6">
+        <a href="https://medium.com/@zobayer.dev/flutter-google-sign-in-using-firebase-45373f4d76a0" target="_blank" rel="noopener noreferrer" class="reveal group block rounded-3xl overflow-hidden bg-zinc-50 dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors">
+          <div class="grid md:grid-cols-2">
+            <div class="photo-frame h-64 md:h-auto">
+              <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*p6Haim0b88EyshsyimdJyw.png?w=900&q=80" alt="Flutter Google Sign In using Firebase" loading="lazy"/>
+            </div>
+            <div class="p-8 md:p-12 flex flex-col justify-center">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Flutter Firebase</span>
+                <span class="text-xs text-zinc-400">Dec 02, 2024 · 5 min read</span>
+              </div>
+              <h2 class="font-display font-bold text-2xl md:text-3xl text-zinc-900 dark:text-white mb-4 group-hover:text-accent transition-colors">Flutter Google Sign In using Firebase — Complete Step-by-Step Guide</h2>
+              <p class="text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">Learn how to easily implement robust Google Authentication in your Flutter application using Firebase Auth and Google Sign In packages with proper error handling and clean architecture.</p>
+              <span class="inline-flex items-center gap-1.5 text-sm font-medium text-accent nav-link">Read on Medium →</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ALL ARTICLES GRID -->
+    <section class="pb-24">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <!-- Article 1 -->
+          <article class="reveal reveal-delay-1 card group bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div class="photo-frame w-full h-44">
+              <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/1*ulai_dNbQBuijfFwfAbtaA.png?w=700&q=80" alt="Location Tracking using Google Map" loading="lazy"/>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Google Maps</span>
+                <span class="text-xs text-zinc-400">Nov 30, 2024</span>
+              </div>
+              <a href="https://medium.com/@zobayer.dev/flutter-location-tracking-using-google-map-4d408c49295c" target="_blank" rel="noopener noreferrer">
+                <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors">Flutter Location Tracking using Google Map</h3>
+              </a>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">Real-time GPS coordinate streaming, user route polyline mapping, and background permissions in Flutter.</p>
+              <a href="https://medium.com/@zobayer.dev/flutter-location-tracking-using-google-map-4d408c49295c" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nav-link">Read article →</a>
+            </div>
+          </article>
+
+          <!-- Article 2 -->
+          <article class="reveal reveal-delay-2 card group bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div class="photo-frame w-full h-44">
+              <img src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*dXkzmCk4LryGYg5FsR-VdQ.png?w=700&q=80" alt="Flutter Custom Chips" loading="lazy"/>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">UI Design</span>
+                <span class="text-xs text-zinc-400">Nov 29, 2024</span>
+              </div>
+              <a href="https://medium.com/@zobayer.dev/flutter-custom-chips-f4b7c804f5c8" target="_blank" rel="noopener noreferrer">
+                <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors">Flutter Custom Chips &amp; Filter Bars</h3>
+              </a>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">Building high-performance interactive filter chips and selectable tag components with micro-animations.</p>
+              <a href="https://medium.com/@zobayer.dev/flutter-custom-chips-f4b7c804f5c8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nav-link">Read article →</a>
+            </div>
+          </article>
+
+          <!-- Article 3 -->
+          <article class="reveal reveal-delay-3 card group bg-white dark:bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-100 dark:border-zinc-800 hover:border-accent">
+            <div class="photo-frame w-full h-44">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=700&q=80" alt="Tailwind CSS Deep Dive" loading="lazy"/>
+            </div>
+            <div class="p-6">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Frontend</span>
+                <span class="text-xs text-zinc-400">Nov 15, 2024</span>
+              </div>
+              <a href="blog-article.html">
+                <h3 class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors">Why Modern Frontends Favor Utility-First CSS</h3>
+              </a>
+              <p class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4">How utility classes and zero-runtime overhead transform production maintainability for web applications.</p>
+              <a href="blog-article.html" class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nav-link">Read guide →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="border-t border-zinc-100 dark:border-zinc-900 bg-white dark:bg-zinc-950">
+    <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-zinc-400">&copy; <span id="year"></span> Md. Zobayer Hasan Nayem. All rights reserved. <br class="sm:hidden"> Developed by <a href="https://trodevit.com/" target="_blank" class="font-bold text-zinc-700 dark:text-zinc-300 hover:text-accent">Trodev IT</a></p>
+      <div class="flex items-center gap-5 text-sm text-zinc-500">
+        <a href="/" class="hover:text-accent transition-colors">Home</a>
+        <a href="/projects" class="hover:text-accent transition-colors">Projects</a>
+        <a href="/contact" class="hover:text-accent transition-colors">Contact Me</a>
+        <a href="https://github.com/zobayerdev" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">GitHub</a>
+        <a href="https://linkedin.com/in/zobayerdev" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">LinkedIn</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Offline local file:// protocol fallback
+    if (window.location.protocol === 'file:') {
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="/"]').forEach(el => {
+          const h = el.getAttribute('href');
+          if (h === '/') el.setAttribute('href', 'index.html');
+          else if (h.startsWith('/')) el.setAttribute('href', h.slice(1) + '.html');
+        });
+      });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target);} });
+    },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>
