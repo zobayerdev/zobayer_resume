@@ -52,16 +52,87 @@
     })();
   </script>
   <!-- Primary SEO Meta Tags -->
-  <title>Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem | zobayerdev</title>
-  <meta name="title" content="Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem | zobayerdev"/>
-  <meta name="description" content="Novu SaaS Dashboard redesign case study by Md. Zobayer Hasan Nayem (zobayerdev). How a full UX overhaul reduced cognitive load by 40% and improved conversion."/>
-  <meta name="author" content="Md. Zobayer Hasan Nayem (zobayerdev)"/>
-  <meta name="keywords" content="zobayer, zobayerdev, novu case study, ui ux case study, saas dashboard redesign, md zobayer hasan nayem"/>
-  <meta property="og:title" content="Novu SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem"/>
+  <title>Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem (zobayerdev)</title>
+  <meta name="title" content="Novu — SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta name="description" content="Novu SaaS Dashboard redesign case study by Md. Zobayer Hasan Nayem (dev zobayer / zobayerdev). How a complete UX overhaul reduced cognitive load by 40% and boosted conversion."/>
+  <meta name="author" content="Md. Zobayer Hasan Nayem (dev zobayer / zobayerdev)"/>
+  <meta name="keywords" content="zobayer, dev zobayer, zobayerdev, novu case study, ui ux case study, saas dashboard redesign, md zobayer hasan nayem, mobile app developer bangladesh"/>
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"/>
+  <link rel="canonical" href="https://www.zobayer.xyz/case-study"/>
+  <link rel="icon" type="image/jpeg" href="/assets/zobayer.jpg"/>
+  <link rel="apple-touch-icon" href="/assets/zobayer.jpg"/>
+  <link rel="manifest" href="/site.webmanifest"/>
+  <meta name="theme-color" content="#FF6B2B"/>
+
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="article"/>
   <meta property="og:url" content="https://www.zobayer.xyz/case-study"/>
+  <meta property="og:site_name" content="Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta property="og:title" content="Novu SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta property="og:description" content="Novu SaaS Dashboard redesign case study by Md. Zobayer Hasan Nayem (dev zobayer) — UI/UX overhaul and design system implementation."/>
   <meta property="og:image" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
-  <link rel="canonical" href="https://www.zobayer.xyz/case-study"/>
+  <meta property="og:image:secure_url" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
+  <meta property="og:image:type" content="image/jpeg"/>
+  <meta property="og:image:width" content="800"/>
+  <meta property="og:image:height" content="800"/>
+  <meta property="og:image:alt" content="Novu Case Study by Md. Zobayer Hasan Nayem (zobayerdev)"/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image"/>
+  <meta property="twitter:site" content="@zobayerdev"/>
+  <meta property="twitter:creator" content="@zobayerdev"/>
+  <meta property="twitter:url" content="https://www.zobayer.xyz/case-study"/>
+  <meta property="twitter:title" content="Novu SaaS Dashboard Case Study | Md. Zobayer Hasan Nayem"/>
+  <meta property="twitter:description" content="Novu SaaS Dashboard redesign case study by Md. Zobayer Hasan Nayem (dev zobayer / zobayerdev)."/>
+  <meta property="twitter:image" content="https://www.zobayer.xyz/assets/zobayer.jpg"/>
+  <meta property="twitter:image:alt" content="Novu Case Study by Md. Zobayer Hasan Nayem"/>
+
+  <!-- Schema.org TechArticle & BreadcrumbList Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.zobayer.xyz/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Case Study",
+            "item": "https://www.zobayer.xyz/case-study"
+          }
+        ]
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://www.zobayer.xyz/case-study#article",
+        "headline": "Novu — SaaS Dashboard Case Study",
+        "description": "How a complete UX overhaul reduced cognitive load by 40% and improved conversion for Novu SaaS Dashboard.",
+        "image": "https://www.zobayer.xyz/assets/zobayer.jpg",
+        "url": "https://www.zobayer.xyz/case-study",
+        "author": {
+          "@type": "Person",
+          "name": "Md. Zobayer Hasan Nayem",
+          "alternateName": ["Zobayer", "dev zobayer", "zobayerdev", "Nayem"],
+          "url": "https://www.zobayer.xyz"
+        },
+        "publisher": {
+          "@type": "Person",
+          "name": "Md. Zobayer Hasan Nayem"
+        }
+      }
+    ]
+  }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -131,6 +202,57 @@
     /* card hover */
     .card-h{transition:transform .28s cubic-bezier(.4,0,.2,1),border-color .18s;}
     .card-h:hover{transform:translateY(-4px);}
+
+    /* ═══ SMOOTH PAGE TRANSITIONS ═══ */
+    @view-transition {
+      navigation: auto;
+    }
+    ::view-transition-old(root) {
+      animation: 160ms cubic-bezier(0.4, 0, 1, 1) both vt-out;
+    }
+    ::view-transition-new(root) {
+      animation: 220ms cubic-bezier(0, 0, 0.2, 1) 30ms both vt-in;
+    }
+    @keyframes vt-out {
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(-4px) scale(0.998); }
+    }
+    @keyframes vt-in {
+      from { opacity: 0; transform: translateY(6px) scale(0.998); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* Top Glowing Progress Bar */
+    #page-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: linear-gradient(90deg, #FF6B2B, #FF8F5C, #FFA07A);
+      box-shadow: 0 0 10px rgba(255, 107, 43, 0.8), 0 0 4px rgba(255, 107, 43, 0.6);
+      z-index: 999999;
+      pointer-events: none;
+      transition: width 0.22s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+      opacity: 0;
+    }
+
+    /* Page Enter / Exit Animation */
+    body {
+      opacity: 1;
+      transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    body.page-transition-exit {
+      opacity: 0 !important;
+      transform: translateY(-5px) !important;
+    }
+    @keyframes pageEnterFade {
+      0% { opacity: 0; transform: translateY(6px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .page-entering {
+      animation: pageEnterFade 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
   </style>
 </head>
 <body class="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 font-body antialiased">
@@ -554,6 +676,87 @@
       });
     }, { threshold: .08, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ═══ SMOOTH PAGE TRANSITION & PROGRESS BAR ═══
+    (function() {
+      let bar = document.getElementById('page-progress-bar');
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.id = 'page-progress-bar';
+        document.body.prepend(bar);
+      }
+
+      document.body.classList.add('page-entering');
+      bar.style.opacity = '1';
+      bar.style.width = '100%';
+      setTimeout(() => {
+        bar.style.opacity = '0';
+        setTimeout(() => { bar.style.width = '0%'; }, 250);
+      }, 150);
+
+      window.addEventListener('pageshow', function(e) {
+        document.body.classList.remove('page-transition-exit');
+        document.body.classList.add('page-entering');
+        if (bar) {
+          bar.style.opacity = '0';
+          bar.style.width = '0%';
+        }
+      });
+
+      const prefetched = new Set();
+      function prefetch(url) {
+        if (!url || prefetched.has(url) || url.startsWith('#') || url.startsWith('mailto:') || url.startsWith('tel:')) return;
+        try {
+          const link = document.createElement('link');
+          link.rel = 'prefetch';
+          link.href = url;
+          document.head.appendChild(link);
+          prefetched.add(url);
+        } catch(e) {}
+      }
+
+      document.addEventListener('mouseover', function(e) {
+        const a = e.target.closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+          prefetch(a.href);
+        }
+      }, { passive: true });
+
+      document.addEventListener('click', function(e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        const a = e.target.closest('a');
+        if (!a) return;
+
+        const href = a.getAttribute('href');
+        const target = a.getAttribute('target');
+        if (!href || target === '_blank' || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('javascript:')) return;
+
+        const url = new URL(a.href, window.location.href);
+        const isSameOrigin = url.origin === window.location.origin || window.location.protocol === 'file:';
+        if (!isSameOrigin) return;
+
+        if (url.pathname === window.location.pathname && url.search === window.location.search && !url.hash) {
+          e.preventDefault();
+          return;
+        }
+
+        e.preventDefault();
+        const dest = a.href;
+
+        bar.style.opacity = '1';
+        bar.style.width = '70%';
+
+        document.body.classList.remove('page-entering');
+        document.body.classList.add('page-transition-exit');
+
+        setTimeout(() => {
+          bar.style.width = '95%';
+          window.location.href = dest;
+        }, 160);
+      }, false);
+    })();
   </script>
 
 </body>

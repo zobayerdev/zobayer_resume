@@ -1,0 +1,17 @@
+{
+  "name": "Md. Zobayer Hasan Nayem - Flutter, Android & iOS Mobile App Developer",
+  "short_name": "zobayerdev",
+  "description": "Official portfolio of Md. Zobayer Hasan Nayem (dev zobayer / zobayerdev) — Flutter, Android (Java), iOS & Mobile Apps Developer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FF6B2B",
+  "icons": [
+    {
+      "src": "/assets/zobayer.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
