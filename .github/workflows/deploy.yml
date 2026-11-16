@@ -1,0 +1,30 @@
+name: 🚀 Deploy Website to cPanel via FTP
+
+on:
+  push:
+    branches:
+      - dev # তোমার মেইন ব্রাঞ্চ 'master' হলে এখানে master লিখে দিও
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy to Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      # প্রজেক্টে বিল্ড স্টেপ (React/Vite/Next) থাকলে নিচের ৩ লাইন আনকমেন্ট (# সরিয়ে) করবে:
+      # - name: 🔨 Install & Build Project
+      #   run: |
+      #     npm install
+      #     npm run build
+
+      - name: 📂 Sync files to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftp.zobayer.xyz # <-- এখানে তোমার আসল FTP Server / IP বসাও
+          username: "zobayer"
+          password: "]3H5o]oAt1#{[=Sj"
+          local-dir: ./
+          server-dir: /public_html/
